@@ -2,7 +2,8 @@ use lazy_static::lazy_static;
 use regex::Regex;
 
 lazy_static! {
-    static ref GH_PR: Regex = Regex::new(r"^https://github\.com/(.*?)/(.*?)/pull/(.*?)$").unwrap();
+    static ref GH_PR: Regex = Regex::new(r"^https://github\.com/(.*?)/(.*?)/pull/(.*?)$")
+        .expect("invalid GH_PR regex pattern");
 }
 
 // github api docs: https://docs.github.com/en/rest/reference/pulls#check-if-a-pull-request-has-been-merged

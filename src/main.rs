@@ -27,7 +27,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let opt: Opt = Opt::from_args();
     let output = generate_output(opt).await?;
 
-    println!("{}", serde_json::to_string(&output).unwrap());
+    match serde_json::to_string(&output) {
+        Ok(s) => println!("{}", s),
+        Err(_) => exit(126),
+    }
 
     exit(output.failed_qty as i32);
 }
